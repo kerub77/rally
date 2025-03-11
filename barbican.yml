@@ -1,0 +1,301 @@
+{% set time = time | default(0) %}
+{% set concurrency = concurrency | default(0) %}
+{% set tenants = tenants | default(0) %}
+{% set users_per_tenant = users_per_tenant | default(0) %}
+{% set networks_per_tenant = networks_per_tenant | default(0) %}
+---
+version: 2
+title: Task for rally-task-barbican-job
+description: Testing just one cinder scenario to verify that rally-task-barbican works
+subtasks:
+  -
+    title: BarbicanSecrets.create_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanSecrets.create_and_delete: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanSecrets.get
+    workloads:
+      -
+        scenario:
+          BarbicanSecrets.get: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanSecrets.create_and_list
+    workloads:
+      -
+        scenario:
+          BarbicanSecrets.create_and_list: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanSecrets.create
+    workloads:
+      -
+        scenario:
+          BarbicanSecrets.create: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanSecrets.list
+    workloads:
+      -
+        scenario:
+          BarbicanSecrets.list: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanContainers.list
+    workloads:
+      -
+        scenario:
+          BarbicanContainers.list: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanContainers.create_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanContainers.create_and_delete: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanContainers.create_certificate_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanContainers.create_certificate_and_delete: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanContainers.create_rsa_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanContainers.create_rsa_and_delete: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanSecrets.create_symmetric_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanSecrets.create_symmetric_and_delete:
+            payload: "rally_data"
+            algorithm: "aes"
+            bit_length: 256
+            mode: "cbc"
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        contexts:
+          users:
+            tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
+            users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanOrders.create_asymmetric_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanOrders.create_asymmetric_and_delete: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanOrders.create_key_and_delete
+    workloads:
+      -
+        scenario:
+          BarbicanOrders.create_key_and_delete: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0
+  -
+    title: BarbicanOrders.list
+    workloads:
+      -
+        scenario:
+          BarbicanOrders.list: {}
+        runner:
+          constant:
+            times: {{ time if time is defined and time > 0 else 8 }}
+            concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 4 }}
+        sla:
+          max_seconds_per_iteration: 200.0
+          max_avg_duration: 100.0
+          outliers:
+            max: 1
+            min_iterations: 10
+            sigmas: 10
+          failure_rate:
+            max: 0

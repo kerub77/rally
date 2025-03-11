@@ -1,0 +1,27 @@
+Oppure:
+{
+    "openstack": {
+        "admin": {
+            "password": "FKJ5zNaThJDs5IPU34Fp8eKgrGN7YV31nJZZYWZu",
+            "project_domain_name": "Default",
+            "project_name": "admin",
+            "user_domain_name": "Default",
+            "username": "admin"
+        },
+        "api_info": {
+            "keystone": {
+                "service_type": "identityv3",
+                "version": 3
+            }
+        },
+        "auth_url": "http://10.100.145.54:5000",
+        "endpoint_type": "internal",
+        "https_cacert": "",
+        "https_cert": "",
+        "https_insecure": true,
+        "https_key": "",
+        "profiler_conn_str": null,
+        "profiler_hmac_key": null,
+        "region_name": "RegionOne"
+    }
+}

@@ -620,7 +620,7 @@
                 name: "{{flavor_name}}"
               image:
                 name: "{{image_name}}"
-              console_type: novnc
+              console_type: spice-html5
           runner:
             constant:
               times: {{ time if time is defined and time > 0 else 4 }}
@@ -720,6 +720,9 @@
             users:
               tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
               users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 2 }}
+            network:
+              start_cidr: "10.2.0.0/24"
+              networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
           sla:
             max_seconds_per_iteration: 200.0
             max_avg_duration: 100.0
@@ -754,6 +757,9 @@
         users:
           tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
           users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        network:
+          start_cidr: "10.2.0.0/24"
+          networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
       sla:
         max_seconds_per_iteration: 200.0
         max_avg_duration: 100.0
@@ -890,7 +896,7 @@
           tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
           users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
         network:
-          start_cidr: "10.2.0.0.0/24"
+          start_cidr: "10.2.0.0/24"
           networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
       sla:
         max_seconds_per_iteration: 200.0
@@ -1390,6 +1396,9 @@
         users:
           tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
           users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 2 }}
+        network:
+          start_cidr: "10.2.0.0/24"
+          networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
       sla:
         max_seconds_per_iteration: 200.0
         max_avg_duration: 100.0
