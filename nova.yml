@@ -662,6 +662,9 @@
             users:
               tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
               users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+            network:
+              start_cidr: "10.2.0.0/24"
+              networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
           sla:
             max_seconds_per_iteration: 200.0
             max_avg_duration: 100.0
@@ -689,6 +692,9 @@
             users:
               tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
               users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+            network:
+              start_cidr: "10.2.0.0/24"
+              networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
           sla:
             max_seconds_per_iteration: 200.0
             max_avg_duration: 100.0
@@ -788,12 +794,15 @@
           times: {{ time if time is defined and time > 0 else 2 }}
           concurrency: {{ concurrency if concurrency is defined and concurrency > 0 else 2 }}
       contexts:
-        api_versions:
-          cinder:
-            version: 3.42
+#        api_versions:
+#          cinder:
+#            version: 3.42
         users:
           tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
           users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 1 }}
+        network:
+          start_cidr: "10.2.0.0/24"
+          networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
       sla:
         max_seconds_per_iteration: 200.0
         max_avg_duration: 100.0
@@ -1096,7 +1105,7 @@
               flavor:
                 name: {{flavor_name}}
               image:
-                name: "rally-named-image-from-context"
+                name: "rally-image"
           runner:
             constant:
               times: {{ time if time is defined and time > 0 else 4 }}
@@ -1115,7 +1124,7 @@
               disk_format: "qcow2"
               container_format: "bare"
               images_per_tenant: 1
-              image_name: "rally-named-image-from-context"
+              image_name: "rally-image"
               visibility: "public"
           sla:
             max_seconds_per_iteration: 200.0

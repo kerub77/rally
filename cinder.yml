@@ -1,10 +1,11 @@
 {% set image_name = "^(cirros)$" %}
 {% set flavor_name = "small" %}
 {% set volume_types = "__DEFAULT__" %}
-{% set time = 0 %}
-{% set concurrency = 0 %}
-{% set tenants = 0 %}
-{% set users_per_tenant = 0 %}
+{% set time = 80 %}
+{% set concurrency = 40 %}
+{% set tenants = 4 %}
+{% set users_per_tenant = 4 %}
+{% set networks_per_tenant = networks_per_tenant | default(0) %}
 ---
 version: 2
 title: Task for gate-rally-dsvm-rally-cinder job
@@ -686,6 +687,9 @@ subtasks:
       users:
         tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
         users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 2 }}
+      network:
+        start_cidr: "10.20.0.0/24"
+        networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
     sla:
       max_seconds_per_iteration: 200.0
       max_avg_duration: 100.0
@@ -717,6 +721,7 @@ subtasks:
             users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 2 }}
           network:
             start_cidr: "10.2.0.0/24"
+            networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
         sla:
           max_seconds_per_iteration: 200.0
           max_avg_duration: 100.0
@@ -744,6 +749,9 @@ subtasks:
           users:
             tenants: {{ tenants if tenants is defined and tenants > 0 else 2 }}
             users_per_tenant: {{ users_per_tenant if users_per_tenant is defined and users_per_tenant > 0 else 2 }}
+          network:
+            start_cidr: "10.20.0.0/24"
+            networks_per_tenant: {{ networks_per_tenant if networks_per_tenant is defined and networks_per_tenant > 0 else 2 }}
           volume_types:
             - "test"
         sla:

@@ -2,11 +2,11 @@
 {% set image_name = "ubuntu22" %}
 {% set username = "ubuntu"  %}
 {% set flavor_name = "small" %}
-{% set time = time | default(0) %}
-{% set concurrency = concurrency | default(0) %}
-{% set tenants = tenants | default(0) %}
-{% set users_per_tenant = users_per_tenant | default(0) %}
-{% set floating_network = floating_network  %}
+{% set time = 80 %}
+{% set concurrency = 40 %}
+{% set tenants = 4 | default(0) %}
+{% set users_per_tenant = 4 %}
+{% set floating_network = "fake_224" %}
 ---
   VMTasks.dd_load_test:
     -
