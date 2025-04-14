@@ -861,39 +861,3 @@ Quotas.neutron_update:
         sigmas: 10
       failure_rate:
         max: 0
-
-NovaServers.boot_and_delete_server:
-  -
-    args:
-      auto_assign_nic: True
-      flavor:
-        name: {{ flavor_name }}
-      image:
-        name: {{image_name}}
-        list_kwargs:
-          visibility: "public"
-    runner:
-      type: "constant"
-      times: 1
-      concurrency: 1
-    context:
-      users:
-        tenants: 1
-        users_per_tenant: 1
-      network:
-        start_cidr: "10.2.0.0/24"
-        networks_per_tenant: 2
-        dns_nameservers:
-          - "8.8.8.8"
-          - "8.8.4.4"
-        router:
-          external: false
-    sla:
-      max_seconds_per_iteration: 200.0
-      max_avg_duration: 100.0
-      outliers:
-        max: 1
-        min_iterations: 10
-        sigmas: 10
-      failure_rate:
-        max: 0
